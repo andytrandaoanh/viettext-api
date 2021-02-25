@@ -1,0 +1,30 @@
+{
+  "name": "viettext-api",
+  "version": "1.0.0",
+  "description": "organizaing a database of Vietnamese text corpora for lingusstic reseach",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "corpus",
+    "vietnamese",
+    "liguistics",
+    "research",
+    "node",
+    "express"
+  ],
+  "author": "Andy Tran Dao Anh",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
