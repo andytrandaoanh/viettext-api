@@ -1,7 +1,7 @@
 const Author = require("../models/author-model.js");
 
 //Create and save a new author
-exports.create = async (req, res) => {
+exports.create = (req, res) => {
   // Validate request
   if (!req.body) {
     res.status(400).send({
@@ -23,7 +23,7 @@ exports.create = async (req, res) => {
 };
 
 // Update a author identified by the id in the request
-exports.update = async (req, res) => {
+exports.update = (req, res) => {
   // Validate Request
   if (!req.body) {
     res.status(400).send({
@@ -35,19 +35,19 @@ exports.update = async (req, res) => {
 };
 
 // Delete a author with the specified id in the request
-exports.delete = async (req, res) => {
+exports.delete = (req, res) => {
   Author.remove(req.params.id, res) ;
 };
 
 
 // Find a single author with an id
-exports.findOne = async (req, res) => {  
+exports.findOne = (req, res) => {  
   Author.findById(req.params.id, res);
 };
 
 
 
 // Retrieve all Examples from the database.
-exports.findAll = async (req, res) => {
+exports.findAll = (req, res) => {
   Author.getAll(res);
 };
