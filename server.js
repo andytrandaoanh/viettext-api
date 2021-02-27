@@ -3,6 +3,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const authorRoutes = require('./routes/author-routes');
+const workRoutes = require('./routes/work-routes');
 
 const PORT = process.env.PORT | 5000;
 const app = express();
@@ -22,7 +23,7 @@ app.get("/", (req, res) => {
 });
 
 app.use('/api', authorRoutes);
-
+app.use('/api', workRoutes);
 
 // set port, listen for requests
 app.listen(PORT, () => {

@@ -47,7 +47,7 @@ exports.findOne = (req, res) => {
 
 
 
-// Retrieve all Examples from the database.
+// Retrieve all authors from the database.
 exports.findAll = (req, res) => {
   Author.getAll(res);
 };
