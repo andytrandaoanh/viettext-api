@@ -3,7 +3,9 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const authorRoutes = require('./routes/author-routes');
+const genreRoutes = require('./routes/genre-routes');
 const workRoutes = require('./routes/work-routes');
+const topicRoutes = require('./routes/topic-routes');
 
 const PORT = process.env.PORT | 5000;
 const app = express();
@@ -23,7 +25,10 @@ app.get("/", (req, res) => {
 });
 
 app.use('/api', authorRoutes);
+app.use('/api', genreRoutes);
 app.use('/api', workRoutes);
+app.use('/api', topicRoutes);
+
 
 // set port, listen for requests
 app.listen(PORT, () => {
