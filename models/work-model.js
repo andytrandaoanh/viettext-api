@@ -3,10 +3,11 @@ const query = require("./db.js");
 // constructor
 const Work = function(work) {  
   this.title = work.title;
+  this.sort_code = work.sort_code;
   this.author_id = work.author_id;
-  this.signature = work.signature;
-  this.genre_id = work.genre_id;  
+  this.genre_id = work.genre_id;
   this.topic_id = work.topic_id;
+  this.signature = work.signature;
   this.published_year = work.published_year;
   this.notes = work.notes;
   this.status = work.status ? work.status : 0;
@@ -37,11 +38,11 @@ Work.create = async (newWork, response) => {
 Work.updateById = async (id, work, response) => {
 
  try {
-  var sql = `UPDATE works SET title = ?, author_id = ?, signature = ?, 
+  var sql = `UPDATE works SET title = ?, sort_code = ?, author_id = ?, signature = ?, 
             genre_id=?, topic_id =?, published_year =?, notes =?,  
             status = ?  WHERE id = ? `
   var result = await query(sql, 
-        [ work.title, work.author_id, work.signature, 
+        [ work.title, work.sort_code, work.author_id, work.signature, 
         work.genre_id, work.topic_id, work.published_year, work.notes, 
         work.status, id]);
   

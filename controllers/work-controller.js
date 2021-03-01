@@ -12,6 +12,7 @@ exports.create = (req, res) => {
   //Create a Work
   const work = new Work({
     title: req.body.title,
+    sort_code: req.body.sort_code,
     author_id: req.body.author_id,
     signature: req.body.signature,
     genre_id: req.body.genre_id,    
