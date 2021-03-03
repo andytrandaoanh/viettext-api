@@ -52,3 +52,9 @@ exports.findOne = (req, res) => {
 exports.findAll = (req, res) => {
   Chapter.getAll(res);
 };
+
+
+// Filter works based on query parameters from the database.
+exports.filter = (req, res) => {
+  Chapter.findByQuery(req, res);
+};

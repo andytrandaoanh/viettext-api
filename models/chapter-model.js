@@ -145,4 +145,45 @@ Chapter.getAll = async response => {
     }
 };
 
+Chapter.findByQuery = async (request, response) => {
+
+  //console.log('query string', request.query);
+
+  //if ('authorid' in request.query) console.log('authorid found:', request.query.authorid);
+
+  let sql = `SELECT * FROM chapters ORDER by id`;
+
+  if ('workid' in request.query) 
+    sql = `select * from chapters where work_id =   
+    ${request.query.workid} order by serial`;
+  
+
+    try {      
+      
+      var result = await query(sql);
+      
+        if (result.length) {
+          response.send(result)
+        
+        }
+        else {
+          response.status(404).send({
+            message: `Not found works with query parameters`
+          });    }
+        
+        } 
+    
+      catch(err) {
+            response.status(500).send({
+                message:
+                  err.message || `Some error occurred while retrieving chapters.`
+            });
+    
+      }
+    
+};
+
+
+
+
 module.exports = Chapter;

@@ -8,6 +8,8 @@ router.put("/chapters/:id",  chapters.update);
 
 router.delete("/chapters/:id", chapters.delete);
 
+router.get("/chapters/search", chapters.filter);
+
 router.get("/chapters/:id", chapters.findOne);
 
 router.get("/chapters", chapters.findAll);
