@@ -150,4 +150,44 @@ Work.getAll = async response => {
     }
 };
 
+
+Work.findByQuery = async (request, response) => {
+
+  //console.log('query string', request.query);
+
+  //if ('authorid' in request.query) console.log('authorid found:', request.query.authorid);
+
+  let sql = `SELECT * FROM works ORDER by id`;
+
+  if ('authorid' in request.query) 
+    sql = `select * from works where author_id = ${request.query.authorid} order by sort_code`;
+  
+
+    try {      
+      
+      var result = await query(sql);
+      
+        if (result.length) {
+          response.send(result)
+        
+        }
+        else {
+          response.status(404).send({
+            message: `Not found works with query parameters`
+          });    }
+        
+        } 
+    
+      catch(err) {
+            response.status(500).send({
+                message:
+                  err.message || `Some error occurred while retrieving work.`
+            });
+    
+      }
+    
+};
+
+
+
 module.exports = Work;

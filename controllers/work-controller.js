@@ -56,3 +56,9 @@ exports.findOne = (req, res) => {
 exports.findAll = (req, res) => {
   Work.getAll(res);
 };
+
+
+// Filter works based on query parameters from the database.
+exports.filter = (req, res) => {
+  Work.findByQuery(req, res);
+};

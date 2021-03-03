@@ -8,6 +8,8 @@ router.put("/works/:id",  works.update);
 
 router.delete("/works/:id", works.delete);
 
+router.get("/works/search", works.filter);
+
 router.get("/works/:id", works.findOne);
 
 router.get("/works", works.findAll);
