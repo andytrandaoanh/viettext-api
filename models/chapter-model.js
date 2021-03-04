@@ -157,9 +157,14 @@ Chapter.findByQuery = async (request, response) => {
     sql = `select * from chapters where work_id =   
     ${request.query.workid} order by serial`;
   
+  else if ('content' in request.query) 
+    sql = `select a.*, b.title, b.signature, b.notes, b.published_year from chapters a
+    inner join works b on a.work_id = b.id   where a.content like 
+    '%${request.query.content}%'`;
 
     try {      
       
+      console.log(sql);
       var result = await query(sql);
       
         if (result.length) {
