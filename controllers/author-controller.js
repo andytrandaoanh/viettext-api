@@ -51,3 +51,8 @@ exports.findOne = (req, res) => {
 exports.findAll = (req, res) => {
   Author.getAll(res);
 };
+
+// Filter authors based on query parameters 
+exports.filter = (req, res) => {
+  Author.findByQuery(req, res);
+};

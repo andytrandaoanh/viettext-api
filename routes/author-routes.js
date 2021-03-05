@@ -8,6 +8,8 @@ router.put("/authors/:id",  authors.update);
 
 router.delete("/authors/:id", authors.delete);
 
+router.get("/authors/search", authors.filter);
+
 router.get("/authors/:id", authors.findOne);
 
 router.get("/authors", authors.findAll);

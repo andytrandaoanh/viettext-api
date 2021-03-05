@@ -139,4 +139,43 @@ Author.getAll = async response => {
     }
 };
 
+
+Author.findByQuery = async (request, response) => {
+
+
+  let sql = `SELECT * FROM authors ORDER by id`;
+
+  if ('type' in request.query) 
+    sql = `SELECT * FROM authors
+    where type =  ${request.query.type} order by sort_code`;
+  
+
+    try {      
+      
+      var result = await query(sql);
+      
+        if (result.length) {
+          response.send(result)
+        
+        }
+        else {
+          response.status(404).send({
+            message: `Not found authors with query parameters`
+          });    }
+        
+        } 
+    
+      catch(err) {
+            response.status(500).send({
+                message:
+                  err.message || `Some error occurred while retrieving authors.`
+            });
+    
+      }
+    
+};
+
+
+
+
 module.exports = Author;

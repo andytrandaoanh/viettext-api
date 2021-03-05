@@ -154,7 +154,8 @@ Chapter.findByQuery = async (request, response) => {
   let sql = `SELECT * FROM chapters ORDER by id`;
 
   if ('workid' in request.query) 
-    sql = `select * from chapters where work_id =   
+    sql = `select a.*, b.title, b.signature, b.notes, b.published_year from chapters a
+    inner join works b on a.work_id = b.id  where work_id =   
     ${request.query.workid} order by serial`;
   
   else if ('content' in request.query) 
