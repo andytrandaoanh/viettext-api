@@ -167,7 +167,18 @@ Work.findByQuery = async (request, response) => {
     inner join topics d on a.topic_id = d.id
     where a.author_id =  ${request.query.authorid} order by sort_code`;
   
+    else if ('recentupdate' in request.query) {
+      let limit = request.query.limit ? request.query.limit : 10; 
+      sql = `select a.*, b.name as author_name, c.description as genre_name, d.description as topic_name  
+      from works a 
+      inner join authors b on a.author_id = b.id
+      inner join genres c on a.genre_id = c.id
+      inner join topics d on a.topic_id = d.id
+      order by a.id desc limit  ${limit}`;
 
+    }
+
+  
     try {      
       
       var result = await query(sql);
