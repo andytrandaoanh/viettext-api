@@ -148,31 +148,34 @@ Author.findByQuery = async (request, response) => {
   if ('type' in request.query) 
     sql = `SELECT * FROM authors
     where type =  ${request.query.type} order by sort_code`;
-  
+  else if ('recentupdate' in request.query) {
+      let limit = request.query.limit ? request.query.limit : 10; 
+      sql = `SELECT * FROM authors  order by id desc limit  ${limit}`;
 
-    try {      
-      
-      var result = await query(sql);
-      
-        if (result.length) {
-          response.send(result)
-        
-        }
-        else {
-          response.status(404).send({
-            message: `Not found authors with query parameters`
-          });    }
-        
-        } 
+    }
+  try {      
     
-      catch(err) {
-            response.status(500).send({
-                message:
-                  err.message || `Some error occurred while retrieving authors.`
-            });
+    var result = await query(sql);
     
+      if (result.length) {
+        response.send(result)
+      
       }
-    
+      else {
+        response.status(404).send({
+          message: `Not found authors with query parameters`
+        });    }
+      
+      } 
+  
+    catch(err) {
+          response.status(500).send({
+              message:
+                err.message || `Some error occurred while retrieving authors.`
+          });
+  
+    }
+  
 };
 
 
